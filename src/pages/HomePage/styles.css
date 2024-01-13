@@ -1,0 +1,6 @@
+.homePage {
+    height: calc(100vh - 50px); /* Вычитаем высоту футера */
+    background-color: #f3f2f1;
+    color: #323130;
+  }
+  

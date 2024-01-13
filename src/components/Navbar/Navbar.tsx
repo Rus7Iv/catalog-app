@@ -1,7 +1,9 @@
 import { CommandBar } from '@fluentui/react';
-import { items } from './types/enum';
+import { useItems } from './types/enum';
 
 const Navbar = () => {
+  const items = useItems();
+
   return <CommandBar items={items} />;
 };
 

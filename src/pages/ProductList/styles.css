@@ -1,5 +1,14 @@
 .productItem {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.emptyMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #888;
+}
+
   

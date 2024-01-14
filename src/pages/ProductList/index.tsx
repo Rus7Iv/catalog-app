@@ -14,15 +14,27 @@ const ProductList = () => {
 
   useEffect(() => {
     fetch('http://localhost:4000/products')
-      .then(response => response.json())
-      .then(data => setProducts(data));
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Ошибка сети');
+        }
+        return response.json();
+      })
+      .then(data => setProducts(data))
+      .catch(error => {
+        console.error('Ошибка:', error);
+      });
   }, []);
 
   return (
     <div className="productList">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} /> // Используйте ProductCard для отображения каждого товара
-      ))}
+      {products.length > 0 ? (
+        products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))
+      ) : (
+        <div className="emptyMessage">Товары отсутствуют</div>
+      )}
     </div>
   );
 };

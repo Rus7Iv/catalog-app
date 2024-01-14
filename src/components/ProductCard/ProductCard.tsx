@@ -8,12 +8,12 @@ type Product = {
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="productCard">
-      <div className="cardHeader">
+    <div className="fluent-card">
+      <div className="fluent-header">
         <h2>{product.name}</h2>
       </div>
       <p>{product.description}</p>
-      <div className="cardFooter">
+      <div className="fluent-footer">
         <h3>Цена: {product.price}</h3>
       </div>
     </div>

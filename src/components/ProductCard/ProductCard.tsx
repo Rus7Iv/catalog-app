@@ -1,12 +1,18 @@
 import './styles/ProductCard.styles.css';
 
 type Product = {
+  id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
 };
 
-const ProductCard = ({ product }: { product: Product }) => {
+type Props = {
+  product: Product;
+  onAddToCart: (product: Product) => void;
+};
+
+const ProductCard = ({ product, onAddToCart }: Props) => {
   return (
     <div className="fluent-card">
       <div className="fluent-header">
@@ -15,6 +21,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       <p>{product.description}</p>
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
+        <button onClick={() => onAddToCart(product)}>Добавить в корзину</button>
       </div>
     </div>
   );

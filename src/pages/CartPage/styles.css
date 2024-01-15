@@ -1,0 +1,16 @@
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+
+.cart-title {
+    margin-left: 30px;
+}
+
+.fluent-card {
+  width: 250px;
+  margin: 16px 8px;
+  height: 200px;
+}

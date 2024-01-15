@@ -2,7 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 0px 10px;
+  padding: 0px 20px;
+}
+
+.productList-title {
+  margin-left: 30px;
 }
 
 .productItem {

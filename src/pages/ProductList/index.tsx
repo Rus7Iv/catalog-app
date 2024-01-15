@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './styles.css';
+import { CartContext } from '../CartPage/type/CartContex';
 
 type Product = {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
 };
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     fetch('http://localhost:4000/products')
@@ -27,15 +29,18 @@ const ProductList = () => {
   }, []);
 
   return (
-    <div className="productList">
-      {products.length > 0 ? (
-        products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))
-      ) : (
-        <div className="emptyMessage">Товары отсутствуют</div>
-      )}
-    </div>
+    <>
+      <h1 className='productList-title'>Список товаров</h1>
+      <div className="productList">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+          ))
+        ) : (
+          <div className="emptyMessage">Товары отсутствуют</div>
+        )}
+      </div>
+    </>
   );
 };
 

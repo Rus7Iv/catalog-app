@@ -10,6 +10,10 @@
   height: 200px;
 }
 
+.fluent-card:hover {
+  background-color: #f3f2f1;
+}
+
 .fluent-header {
   font-size: 20px;
   font-weight: 600;

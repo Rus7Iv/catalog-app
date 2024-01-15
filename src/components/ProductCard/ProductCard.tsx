@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       </div>
       <p>{product.description}</p>
       <div className="fluent-footer">
-        <h3>Цена: {product.price}</h3>
+        <h3>Цена: {product.price} руб.</h3>
       </div>
     </div>
   );

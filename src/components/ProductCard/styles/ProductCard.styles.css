@@ -1,4 +1,6 @@
 .fluent-card {
+  text-align: center;
+  justify-content: center;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   padding: 16px;
@@ -6,6 +8,13 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 16px 8px;
+  transition: transform 0.25s ease, box-shadow 0.5s ease;
+}
+
+.fluent-card:hover {
+  background-color: #f3f2f1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .fluent-card:hover {
@@ -22,4 +31,17 @@
   font-size: 16px;
   font-weight: 500;
   margin-top: 16px;
+}
+
+.add-to-cart {
+  color: #0078D4;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #0078D4;
+  color: white;
 }

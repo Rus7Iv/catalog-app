@@ -21,7 +21,7 @@ const ProductCard = ({ product, onAddToCart }: Props) => {
       <p>{product.description}</p>
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
-        <button onClick={() => onAddToCart(product)}>Добавить в корзину</button>
+        <button className='add-to-cart' onClick={() => onAddToCart(product)}>Добавить в корзину</button>
       </div>
     </div>
   );

@@ -5,11 +5,12 @@ type Product = {
   name: string;
   description: string;
   price: number;
+  quantity?: number;
 };
 
 type CartContextType = {
   cart: Product[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (product: Product) => void;
 };
 

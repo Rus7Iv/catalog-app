@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './styles/ProductCard.styles.css';
 
 type Product = {
@@ -9,17 +10,31 @@ type Product = {
 
 type Props = {
   product: Product;
-  onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product, quantity: number) => void;
   onRemoveFromCart: (product: Product) => void;
   inCart: boolean;
 };
 
 const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) => {
-  const handleClick = () => {
-    if (inCart) {
-      onRemoveFromCart(product);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddClick = () => {
+    onAddToCart(product, quantity);
+  };
+
+  const handleRemoveClick = () => {
+    onRemoveFromCart(product);
+  };
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     } else {
-      onAddToCart(product);
+      handleRemoveClick();
     }
   };
 
@@ -31,7 +46,10 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
       <p>{product.description}</p>
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
-        <button className='add-to-cart' onClick={handleClick}>
+        <button onClick={handleDecrement}>-</button>
+        <span>{quantity}</span>
+        <button onClick={handleIncrement}>+</button>
+        <button className='add-to-cart' onClick={handleAddClick}>
           {inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
         </button>
       </div>
@@ -40,3 +58,4 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
 };
 
 export default ProductCard;
+

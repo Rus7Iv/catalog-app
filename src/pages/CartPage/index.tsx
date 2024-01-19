@@ -22,7 +22,9 @@ const Cart = () => {
             </div>
           ))
         ) : (
-          <p className='emptyMessage'>Корзина пуста</p>
+          <div className='empty-cart-container'>
+            <p>Корзина пуста</p>
+          </div>
         )}
       </div>
     </>

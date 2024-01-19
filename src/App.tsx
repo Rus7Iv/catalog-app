@@ -51,7 +51,6 @@ const App = () => {
     });
   };
 
-
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       <Router>

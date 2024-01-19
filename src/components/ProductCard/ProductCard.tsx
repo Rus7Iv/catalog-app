@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './styles/ProductCard.styles.css';
+import { CartContext } from '../../pages/CartPage/type/CartContex';
 
 type Product = {
   id: number;
   name: string;
   description: string;
   price: number;
+  quantity?: number;
 };
 
 type Props = {
@@ -16,10 +18,14 @@ type Props = {
 };
 
 const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) => {
-  const [quantity, setQuantity] = useState(1);
+  const { cart } = useContext(CartContext);
+  const cartItem = cart.find((item: Product) => item.id === product.id);
+  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
 
   const handleAddClick = () => {
-    onAddToCart(product, quantity);
+    if (quantity !== undefined) {
+      onAddToCart(product, quantity);
+    }
   };
 
   const handleRemoveClick = () => {
@@ -27,11 +33,13 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
   };
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    if (quantity !== undefined) {
+      setQuantity(quantity + 1);
+    }
   };
 
   const handleDecrement = () => {
-    if (quantity > 1) {
+    if (quantity !== undefined && quantity > 1) {
       setQuantity(quantity - 1);
     } else {
       handleRemoveClick();

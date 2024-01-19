@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -18,12 +18,28 @@ type Product = {
 const App = () => {
   const [cart, setCart] = useState<Product[]>([]);
 
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
   };
 
+  const removeFromCart = (product: Product) => {
+    setCart(cart.filter(item => item.id !== product.id));
+  };
+
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       <Router>
         <Navbar />
         <Routes>

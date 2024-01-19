@@ -10,9 +10,11 @@ type Product = {
 type CartContextType = {
   cart: Product[];
   addToCart: (product: Product) => void;
+  removeFromCart: (product: Product) => void;
 };
 
 export const CartContext = React.createContext<CartContextType>({
   cart: [],
   addToCart: () => {},
+  removeFromCart: () => {},
 });

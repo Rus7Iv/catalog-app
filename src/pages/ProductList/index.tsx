@@ -12,7 +12,7 @@ type Product = {
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const { addToCart } = useContext(CartContext);
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
   useEffect(() => {
     fetch('http://localhost:4000/products')
@@ -34,7 +34,13 @@ const ProductList = () => {
       <div className="productList">
         {products.length > 0 ? (
           products.map((product) => (
-            <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onAddToCart={addToCart} 
+              onRemoveFromCart={removeFromCart}
+              inCart={cart.some(item => item.id === product.id)}
+            />
           ))
         ) : (
           <div className="emptyMessage">Товары отсутствуют</div>

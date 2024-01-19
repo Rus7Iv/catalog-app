@@ -10,9 +10,19 @@ type Product = {
 type Props = {
   product: Product;
   onAddToCart: (product: Product) => void;
+  onRemoveFromCart: (product: Product) => void;
+  inCart: boolean;
 };
 
-const ProductCard = ({ product, onAddToCart }: Props) => {
+const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) => {
+  const handleClick = () => {
+    if (inCart) {
+      onRemoveFromCart(product);
+    } else {
+      onAddToCart(product);
+    }
+  };
+
   return (
     <div className="fluent-card">
       <div className="fluent-header">
@@ -21,7 +31,9 @@ const ProductCard = ({ product, onAddToCart }: Props) => {
       <p>{product.description}</p>
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
-        <button className='add-to-cart' onClick={() => onAddToCart(product)}>Добавить в корзину</button>
+        <button className='add-to-cart' onClick={handleClick}>
+          {inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+        </button>
       </div>
     </div>
   );

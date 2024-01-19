@@ -25,18 +25,21 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
   const addToCart = (product: Product) => {
-    setCart([...cart, product]);
+    setCart(prevCart => {
+      const updatedCart = [...prevCart, product];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   const removeFromCart = (product: Product) => {
-    setCart(cart.filter(item => item.id !== product.id));
+    setCart(prevCart => {
+      const updatedCart = prevCart.filter(item => item.id !== product.id);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
-
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>

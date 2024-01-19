@@ -35,6 +35,7 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
       setQuantity(quantity - 1);
     } else {
       handleRemoveClick();
+      setQuantity(1);
     }
   };
 
@@ -46,16 +47,20 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
       <p>{product.description}</p>
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
-        <button onClick={handleDecrement}>-</button>
-        <span>{quantity}</span>
-        <button onClick={handleIncrement}>+</button>
+        {inCart ? (
+        <>
+          <button className='add-to-cart' onClick={handleDecrement}>-</button>
+          <span>{quantity}</span>
+          <button className='add-to-cart' onClick={handleIncrement}>+</button>
+        </>
+      ) : (
         <button className='add-to-cart' onClick={handleAddClick}>
-          {inCart ? 'Удалить из корзины' : 'Добавить в корзину'}
+          Добавить в корзину
         </button>
+      )}
       </div>
     </div>
   );
 };
 
 export default ProductCard;
-

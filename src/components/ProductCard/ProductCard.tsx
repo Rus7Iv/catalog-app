@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import './styles/ProductCard.styles.css';
 import { CartContext } from '../../pages/CartPage/type/CartContex';
+import QuantityControl from '../QuantityControl/QuantityControl';
 
 type Product = {
   id: number;
@@ -20,7 +21,7 @@ type Props = {
 const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) => {
   const { cart } = useContext(CartContext);
   const cartItem = cart.find((item: Product) => item.id === product.id);
-  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 0);
 
   useEffect(() => {
     const cartItemIndex = cart.findIndex((item: Product) => item.id === product.id);
@@ -67,16 +68,12 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
       <div className="fluent-footer">
         <h3>Цена: {product.price} руб.</h3>
         {inCart ? (
-        <>
-          <button className='fluent-btn' onClick={handleDecrement}>-</button>
-          <span className='quantity-text'>{quantity}</span>
-          <button className='fluent-btn' onClick={handleIncrement}>+</button>
-        </>
-      ) : (
-        <button className='fluent-btn' onClick={handleAddClick}>
-          Добавить в корзину
-        </button>
-      )}
+          <QuantityControl quantity={quantity} onIncrement={handleIncrement} onDecrement={handleDecrement} />
+        ) : (
+          <button className='fluent-btn' onClick={handleAddClick}>
+            Добавить в корзину
+          </button>
+        )}
       </div>
     </div>
   );

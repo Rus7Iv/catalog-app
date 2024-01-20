@@ -33,7 +33,7 @@
   margin-top: 16px;
 }
 
-.add-to-cart {
+.product-btn {
   color: #0078D4;
   text-decoration: none;
   padding: 10px 20px;
@@ -41,7 +41,11 @@
   transition: background-color 0.3s ease;
 }
 
-.add-to-cart:hover {
+.product-btn:hover {
   background-color: #0078D4;
   color: white;
+}
+
+.quantity-text {
+  margin: 0px 20px;
 }

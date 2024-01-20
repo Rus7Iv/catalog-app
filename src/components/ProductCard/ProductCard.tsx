@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './styles/ProductCard.styles.css';
 import { CartContext } from '../../pages/CartPage/type/CartContex';
 
@@ -21,6 +21,17 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
   const { cart } = useContext(CartContext);
   const cartItem = cart.find((item: Product) => item.id === product.id);
   const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+
+  useEffect(() => {
+    const cartItemIndex = cart.findIndex((item: Product) => item.id === product.id);
+  
+    if (cartItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[cartItemIndex] = { ...updatedCart[cartItemIndex], quantity };
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  }, [cart, product.id, quantity]);  
 
   const handleAddClick = () => {
     if (quantity !== undefined) {

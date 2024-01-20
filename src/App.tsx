@@ -7,14 +7,7 @@ import ProductList from './pages/ProductList';
 import ErrorPage from './pages/ErrorPage';
 import Cart from './pages/CartPage';
 import { CartContext } from './pages/CartPage/type/CartContex';
-
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity?: number;
-};
+import { Product } from './components/ProductCard/types/type';
 
 const App = () => {
   const [cart, setCart] = useState<Product[]>([]);
@@ -52,7 +45,7 @@ const App = () => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>
       <Router>
         <Navbar />
         <Routes>

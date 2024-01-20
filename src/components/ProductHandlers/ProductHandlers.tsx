@@ -4,7 +4,7 @@ import { Product } from '../ProductCard/types/type';
 import { HandlersProps } from './types/type';
 
 const ProductHandlers = ({ product, onAddToCart, onRemoveFromCart }: HandlersProps) => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const cartItem = cart.find((item: Product) => item.id === product.id);
   const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
 
@@ -15,9 +15,10 @@ const ProductHandlers = ({ product, onAddToCart, onRemoveFromCart }: HandlersPro
       const updatedCart = [...cart];
       updatedCart[cartItemIndex] = { ...updatedCart[cartItemIndex], quantity };
 
+      setCart(updatedCart);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
-  }, [cart, product.id, quantity]);  
+  }, [cart, product.id, quantity, setCart]);  
 
   const handleAddClick = () => {
     if (quantity !== undefined) {
@@ -27,6 +28,9 @@ const ProductHandlers = ({ product, onAddToCart, onRemoveFromCart }: HandlersPro
 
   const handleRemoveClick = () => {
     onRemoveFromCart(product);
+    const updatedCart = cart.filter((item: Product) => item.id !== product.id);
+    setCart(updatedCart); 
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const handleIncrement = () => {
@@ -48,3 +52,4 @@ const ProductHandlers = ({ product, onAddToCart, onRemoveFromCart }: HandlersPro
 };
 
 export default ProductHandlers;
+

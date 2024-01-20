@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.fluent-btn {
+  color: #0078D4;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.fluent-btn:hover {
+  background-color: #0078D4;
+  color: white;
+}

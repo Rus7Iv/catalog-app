@@ -5,7 +5,7 @@ const ErrorPage = () => {
   return (
     <div className="error-page-container">
       <h1>Данной страницы не существует</h1>
-      <Link to="/" className='home-link'>Перейти на главную страницу</Link>
+      <Link to="/" className='fluent-btn'>Перейти на главную страницу</Link>
     </div>
   );
 };

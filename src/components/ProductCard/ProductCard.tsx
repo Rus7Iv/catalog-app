@@ -68,12 +68,12 @@ const ProductCard = ({ product, onAddToCart, onRemoveFromCart, inCart }: Props) 
         <h3>Цена: {product.price} руб.</h3>
         {inCart ? (
         <>
-          <button className='product-btn' onClick={handleDecrement}>-</button>
+          <button className='fluent-btn' onClick={handleDecrement}>-</button>
           <span className='quantity-text'>{quantity}</span>
-          <button className='product-btn' onClick={handleIncrement}>+</button>
+          <button className='fluent-btn' onClick={handleIncrement}>+</button>
         </>
       ) : (
-        <button className='product-btn' onClick={handleAddClick}>
+        <button className='fluent-btn' onClick={handleAddClick}>
           Добавить в корзину
         </button>
       )}

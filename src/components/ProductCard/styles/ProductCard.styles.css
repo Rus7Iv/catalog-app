@@ -33,19 +33,6 @@
   margin-top: 16px;
 }
 
-.product-btn {
-  color: #0078D4;
-  text-decoration: none;
-  padding: 10px 20px;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.product-btn:hover {
-  background-color: #0078D4;
-  color: white;
-}
-
 .quantity-text {
   margin: 0px 20px;
 }

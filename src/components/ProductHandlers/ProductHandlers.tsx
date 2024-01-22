@@ -13,12 +13,17 @@ const ProductHandlers = ({ product, onAddToCart, onRemoveFromCart }: HandlersPro
   
     if (cartItemIndex !== -1) {
       const updatedCart = [...cart];
-      updatedCart[cartItemIndex] = { ...updatedCart[cartItemIndex], quantity };
+      const newCartItem = { ...updatedCart[cartItemIndex], quantity };
 
-      setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      if (updatedCart[cartItemIndex].quantity !== newCartItem.quantity) {
+        updatedCart[cartItemIndex] = newCartItem;
+  
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+      }
     }
-  }, [cart, product.id, quantity, setCart]);  
+  }, [cart, product.id, quantity, setCart]);
+  
 
   const handleAddClick = () => {
     if (quantity !== undefined) {

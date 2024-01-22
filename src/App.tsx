@@ -21,28 +21,22 @@ const App = () => {
 
   const addToCart = (product: Product, quantity: number) => {
     const existingProduct = cart.find(item => item.id === product.id);
+    let updatedCart;
     if (existingProduct) {
-      setCart(prevCart => {
-        const updatedCart = prevCart.map(item => item.id === product.id ? { ...item, quantity: (item.quantity || 0) + quantity } : item);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        return updatedCart;
-      });
+      updatedCart = cart.map(item => item.id === product.id ? { ...item, quantity: (item.quantity || 0) + quantity } : item);
     } else {
-      setCart(prevCart => {
-        const updatedCart = [...prevCart, { ...product, quantity }];
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        return updatedCart;
-      });
+      updatedCart = [...cart, { ...product, quantity }];
     }
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
-
+  
   const removeFromCart = (product: Product) => {
-    setCart(prevCart => {
-      const updatedCart = prevCart.filter(item => item.id !== product.id);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+    const updatedCart = cart.filter(item => item.id !== product.id);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
+  
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, setCart }}>

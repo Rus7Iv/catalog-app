@@ -2,14 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './styles.css';
 import { CartContext } from '../CartPage/type/CartContex';
-
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity?: number;
-};
+import { Product } from '../../components/ProductCard/types/type';
 
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);

@@ -25,3 +25,22 @@ code {
   background-color: #0078D4;
   color: white;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #FFFFFF;
+  background: #888888; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555; 
+}
